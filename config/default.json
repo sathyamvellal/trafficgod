@@ -1,0 +1,9 @@
+{
+  "name": "trafficgod",
+
+  "mapsApi": {
+    "baseUrl": "https://maps.googleapis.com/maps/api/distancematrix/json",
+    "trafficMode": "best_guess",
+    "departureTime": "now"
+  }
+}
