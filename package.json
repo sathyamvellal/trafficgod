@@ -1,0 +1,26 @@
+{
+  "name": "trafficgod",
+  "version": "0.0.1",
+  "description": "Duration logger for key junctions along ORR ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sathyamvellal/trafficgod.git"
+  },
+  "keywords": [
+    "traffic",
+    "maps"
+  ],
+  "author": "Sathyam Vellal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sathyamvellal/trafficgod/issues"
+  },
+  "homepage": "https://github.com/sathyamvellal/trafficgod#readme",
+  "dependencies": {
+    "request": "^2.67.0"
+  }
+}
