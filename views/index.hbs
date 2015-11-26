@@ -3,7 +3,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $.getJSON('/api/1/records/?timekey=x&datakey=y', function(data) {
-        var colors = ["#F08080", "#20B2AA", "#8020B3", "#205EB3", "#B39B20"];
+        var colors = ["#F08080", "#B39B20", "#205EB3", "#8020B3", "#20B2AA"];
         var colorIdx = 0;
         var records = data.records;
         var places = Object.keys(records);
