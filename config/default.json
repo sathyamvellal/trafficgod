@@ -5,5 +5,10 @@
     "baseUrl": "https://maps.googleapis.com/maps/api/distancematrix/json",
     "trafficMode": "best_guess",
     "departureTime": "now"
+  },
+
+  "mongodb": {
+    "host": "127.0.0.1",
+    "database": "trafficgod"
   }
 }

@@ -1,2 +1,57 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div id="graph" style="height: 300px; width: 100%;"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $.getJSON('/api/1/records/?timekey=x&datakey=y', function(data) {
+        var colors = ["#F08080", "#20B2AA", "#8020B3", "#205EB3", "#B39B20"];
+        var colorIdx = 0;
+        var records = data.records;
+        var places = Object.keys(records);
+        var chartRecords = [];
+
+        console.log(records);
+
+        for (var i in places) {
+            var chartRecord = {
+                type: "line",
+                xValueType: "dateTime",
+                showInLegend: true,
+                lineThickness: 2,
+                name: places[i],
+                color: colors[colorIdx++],
+                markerType: "none",
+                dataPoints: records[places[i]]
+            };
+
+            chartRecords.push(chartRecord);
+        }
+        console.log(chartRecords);
+
+        $("#graph").CanvasJSChart({
+            title: {
+                text: "ORR Traffic",
+                fontSize: 30
+            },
+            animationEnabled: true,
+            axisX: {
+                gridColor: "Silver",
+                tickColor: "silver",
+                valueFormatString: "HH:mm:ss"
+            },                        
+            toolTip: {
+              shared:true
+            },
+            theme: "theme2",
+            axisY: {
+                gridColor: "Silver",
+                tickColor: "silver"
+            },
+            legend: {
+                verticalAlign: "center",
+                horizontalAlign: "right"
+            },
+            data: chartRecords
+        });
+    });
+});
+</script>

@@ -1,6 +1,6 @@
 {
   "name": "trafficgod",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Duration logger for key junctions along ORR ",
   "main": "index.js",
   "private": true,
@@ -33,6 +33,7 @@
     "milliseconds": "^1.0.3",
     "mongoose": "^4.2.7",
     "morgan": "~1.6.1",
+    "q": "^1.4.1",
     "request": "^2.67.0",
     "serve-favicon": "~2.3.0"
   }
