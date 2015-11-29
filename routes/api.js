@@ -8,8 +8,8 @@ var express = require('express'),
 router.get('/records', function(req, res, next) {
     record.getAllRecords()
     .then(function(results) {
-        var timeKey = req.query.timekey;
-        var dataKey = req.query.datakey;
+        var timeKey = req.query.timekey || 'time';
+        var dataKey = req.query.datakey || 'value';
 
         var records = {};
         for (var i in config.points) {
@@ -24,7 +24,7 @@ router.get('/records', function(req, res, next) {
                 records[config.points[j][0]].push(record);
             }
         }
-        res.json({status: 'OK', records: records});
+        res.json({status: 'OK', records: records, groups: config.groups});
     }, function(err) {
         res.json({status: 'ERR', err: err});
     });

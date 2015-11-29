@@ -1,57 +1,66 @@
-<div id="graph" style="height: 300px; width: 100%;"></div>
+<div class="graphContainer"></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
     $.getJSON('/api/1/records/?timekey=x&datakey=y', function(data) {
-        var colors = ["#F08080", "#B39B20", "#205EB3", "#8020B3", "#20B2AA"];
-        var colorIdx = 0;
+        var colors = ["#F08080", "#20B2AA", "#205EB3", "#8020B3", "#B39B20"];
+        var gIdx = 0;
         var records = data.records;
+        var groups = data.groups;
         var places = Object.keys(records);
-        var chartRecords = [];
+        var graphWidth = 7 * records[places[0]].length + 'px';
 
-        console.log(records);
-
-        for (var i in places) {
+        for (var groupName in groups) {
+          $(".graphContainer").append('<div id="graph' + gIdx + '" style="height: 300px; width: ' + graphWidth + '; margin-bottom: 100px;">');
+          var colorIdx = 0;
+          var chartRecords = [];
+          var placesInGroup = groups[groupName];
+          console.log(placesInGroup);
+          for (var i in placesInGroup) {
+            var placeIdx = placesInGroup[i];
+            console.log(placeIdx);
             var chartRecord = {
                 type: "line",
                 xValueType: "dateTime",
                 showInLegend: true,
                 lineThickness: 2,
-                name: places[i],
+                name: places[placeIdx],
                 color: colors[colorIdx++],
                 markerType: "none",
-                dataPoints: records[places[i]]
+                dataPoints: records[places[placeIdx]]
             };
 
             chartRecords.push(chartRecord);
-        }
-        console.log(chartRecords);
+          }
 
-        $("#graph").CanvasJSChart({
-            title: {
-                text: "ORR Traffic",
-                fontSize: 30
-            },
-            animationEnabled: true,
-            axisX: {
-                gridColor: "Silver",
-                tickColor: "silver",
-                valueFormatString: "HH:mm:ss"
-            },                        
-            toolTip: {
-              shared:true
-            },
-            theme: "theme2",
-            axisY: {
-                gridColor: "Silver",
-                tickColor: "silver"
-            },
-            legend: {
-                verticalAlign: "center",
-                horizontalAlign: "right"
-            },
-            data: chartRecords
-        });
+          $("#graph" + gIdx).CanvasJSChart({
+              title: {
+                  text: groupName,
+                  fontSize: 30
+              },
+              animationEnabled: true,
+              axisX: {
+                  gridColor: "Silver",
+                  tickColor: "silver",
+                  valueFormatString: "HH:mm:ss"
+              },
+              toolTip: {
+                shared:true
+              },
+              theme: "theme2",
+              axisY: {
+                  gridColor: "Silver",
+                  tickColor: "silver"
+              },
+              legend: {
+                  verticalAlign: "center",
+                  horizontalAlign: "right"
+              },
+              data: chartRecords
+          });
+
+          gIdx++;
+        }
     });
 });
 </script>
