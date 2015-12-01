@@ -8,11 +8,9 @@ $(document).ready(function() {
         var records = data.records;
         var groups = data.groups;
         var places = Object.keys(records);
-        var graphWidth = 7 * records[places[0]].length;
-        graphWidth = (graphWidth < 500 ? 500 : graphWidth) + 'px';
 
         for (var groupName in groups) {
-          $(".graphContainer").append('<div id="graph' + gIdx + '" style="height: 300px; width: ' + graphWidth + '; margin-bottom: 100px;">');
+          $(".graphContainer").append('<div id="graph' + gIdx + '" style="height: 300px; width: 100%; margin-bottom: 100px;">');
           var colorIdx = 0;
           var chartRecords = [];
           var placesInGroup = groups[groupName];
@@ -39,6 +37,7 @@ $(document).ready(function() {
                   text: groupName,
                   fontSize: 30
               },
+              zoomEnabled: true,
               animationEnabled: true,
               axisX: {
                   gridColor: "Silver",
